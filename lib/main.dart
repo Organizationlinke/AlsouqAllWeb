@@ -8,15 +8,18 @@ void main()async {
 final uri = Uri.base;
   final referralId = uri.queryParameters['referral_id'];
   final reseverId = uri.queryParameters['resever_id'];
+    // استخدم القيم التي تم تمريرها من dart-define
+  const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+  const supabaseAnonKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+  // تحقق من القيم
+  if (supabaseUrl.isEmpty || supabaseAnonKey.isEmpty) {
+    throw Exception('Supabase URL or Anon Key is missing');
+  }
   await dotenv.load(isOptional: true); // تحميل ملف .env  
   await Supabase.initialize(
-    url: dotenv.env['SUPABASE_URL']!, // قراءة URL
-    anonKey: dotenv.env['SUPABASE_ANON_KEY']!, // قراءة المفتاح
+    url: supabaseUrl, // قراءة URL
+    anonKey: supabaseAnonKey, // قراءة المفتاح
   );
-  // await Supabase.initialize(
-  //    url: 'https://zhhnxvbajczmvqrxwcul.supabase.co', // قراءة URL
-  //   anonKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpoaG54dmJhamN6bXZxcnh3Y3VsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI1NTM0MDcsImV4cCI6MjA0ODEyOTQwN30.sh7x-k-k3C4vNSgT9q8GJR_ZrKrfoz2MGsRG6Rr0ybI', // قراءة المفتاح
-  //    );
 
   
   runApp(Alsouq_Web(referralId: referralId,reseverId:reseverId));
