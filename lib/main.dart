@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:web_app/ReceverHandler.dart';
 import 'package:web_app/ReferralHandler.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main()async {
 final uri = Uri.base;
@@ -15,10 +14,10 @@ final uri = Uri.base;
   if (supabaseUrl.isEmpty || supabaseAnonKey.isEmpty) {
     throw Exception('Supabase URL or Anon Key is missing');
   }
-  await dotenv.load(isOptional: true); // تحميل ملف .env  
+ 
   await Supabase.initialize(
-    url: supabaseUrl, // قراءة URL
-    anonKey: supabaseAnonKey, // قراءة المفتاح
+    url: 'https://lnmalfsbaosokqlxslsm.supabase.co', // قراءة URL
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWFsZnNiYW9zb2txbHhzbHNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIzNDA1NTEsImV4cCI6MjAzNzkxNjU1MX0.5DYX1x5DLKprMUPoVnrKqr3YS5-ojjyRV4tjh_7hFOM', // قراءة المفتاح
   );
 
   
