@@ -16,8 +16,8 @@ final uri = Uri.base;
   }
  
   await Supabase.initialize(
-    url: 'https://lnmalfsbaosokqlxslsm.supabase.co', // قراءة URL
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWFsZnNiYW9zb2txbHhzbHNtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIzNDA1NTEsImV4cCI6MjAzNzkxNjU1MX0.5DYX1x5DLKprMUPoVnrKqr3YS5-ojjyRV4tjh_7hFOM', // قراءة المفتاح
+    url: supabaseUrl, // قراءة URL
+    anonKey: supabaseAnonKey, // قراءة المفتاح
   );
 
   
