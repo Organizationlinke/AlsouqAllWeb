@@ -57,24 +57,31 @@ class _ReceverHandlerState extends State<ReceverHandler> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('متابعه الي التطبيق'),
-      ),
-      body:  Center(
-        child:  Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Container(
-                color: const Color.fromARGB(255, 4, 140, 8),
-                child: TextButton(onPressed: () async{
-                  await _launchURL();
-                }, child: Text('متابعه الي التطبيق',style: TextStyle(color: Colors.white,fontSize: 20),)),
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('السوق',style: TextStyle(fontSize: 22),),
+        ),
+        body:  Center(
+          child:  Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: const Color.fromARGB(255, 4, 140, 8),
+                      child: TextButton(onPressed: () async{
+                        await _launchURL();
+                      }, child: Text('متابعه الي التطبيق',style: TextStyle(color: Colors.white,fontSize: 20),)),
+                    ),
+                  ),
+                ],
               ),
-            ),
-           
-          ],
+             
+            ],
+          ),
         ),
       ),
     );
