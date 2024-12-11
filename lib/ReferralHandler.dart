@@ -25,14 +25,14 @@ class _ReferralHandlerPageState extends State<ReferralHandler> {
         url.queryParameters['referral_id']; // الحصول على referral_id
    print('referralId::-$referralId');
     try {
-      if (html.window.localStorage['referr_uuid'] == null) {
+      // if (html.window.localStorage['referr_uuid'] == null) {
         if (referralId != null) {
           final respos = await supabas
               .from('referr')
               .insert({
                 'sender_id': referralId,
                 'url': url.toString(),
-                
+                'Old_UU_ID':html.window.localStorage['referr_uuid'],
                 'type': 1,
               })
               .select()
@@ -43,11 +43,11 @@ class _ReferralHandlerPageState extends State<ReferralHandler> {
             print(respos['UU_ID']);
           }
         }
-      }
+      // }
     } catch (e) {
       print(e);
     }
-    await _launchURL();
+
   }
 
   Future<void> _launchURL() async {
@@ -65,13 +65,20 @@ class _ReferralHandlerPageState extends State<ReferralHandler> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Referral Handler'),
+        title: const Text('متابعه الي التطبيق'),
       ),
-      body: const Center(
-        child: const Column(
+      body:  Center(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Handling Referral...'),
+            Expanded(
+              child: Container(
+                color: const Color.fromARGB(255, 4, 140, 8),
+                child: TextButton(onPressed: () async{
+                  await _launchURL();
+                }, child: Text('متابعه الي التطبيق',style: TextStyle(color: Colors.white,fontSize: 20),)),
+              ),
+            ),
            
           ],
         ),

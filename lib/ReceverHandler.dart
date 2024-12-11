@@ -25,7 +25,7 @@ class _ReceverHandlerState extends State<ReceverHandler> {
         url.queryParameters['resever_id']; // الحصول على referral_id
    
     try {
-      if (html.window.localStorage['referr_uuid'] != null) {
+      // if (html.window.localStorage['referr_uuid'] != null) {
         if (reseverId != null) {
           final respos = await supabas
               .from('referr')
@@ -37,11 +37,11 @@ class _ReceverHandlerState extends State<ReceverHandler> {
               .select()
               .single();
         }
-      }
+      // }
     } catch (e) {
       print(e);
     }
-    await _launchURL();
+    
   }
 
   Future<void> _launchURL() async {
@@ -59,13 +59,20 @@ class _ReceverHandlerState extends State<ReceverHandler> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Referral Handler'),
+        title: const Text('متابعه الي التطبيق'),
       ),
-      body: const Center(
-        child: const Column(
+      body:  Center(
+        child:  Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Handling Referral...'),
+            Expanded(
+              child: Container(
+                color: const Color.fromARGB(255, 4, 140, 8),
+                child: TextButton(onPressed: () async{
+                  await _launchURL();
+                }, child: Text('متابعه الي التطبيق',style: TextStyle(color: Colors.white,fontSize: 20),)),
+              ),
+            ),
            
           ],
         ),
