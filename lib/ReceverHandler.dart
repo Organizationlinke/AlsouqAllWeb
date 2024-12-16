@@ -1,7 +1,9 @@
 import 'dart:html' as html;
 import 'package:flutter/material.dart';
+import 'package:installed_apps/installed_apps.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 class ReceverHandler extends StatefulWidget {
   @override
@@ -30,7 +32,7 @@ class _ReceverHandlerState extends State<ReceverHandler> {
           final respos = await supabas
               .from('referr')
               .insert({
-                'sender_id': reseverId,
+                'user_id': reseverId,
                 'resever_id': html.window.localStorage['referr_uuid'],
                 'type': 2,
               })
@@ -43,17 +45,47 @@ class _ReceverHandlerState extends State<ReceverHandler> {
     }
     
   }
+Future<void> _launchURL() async {
+  final String packageName = 'com.Alsouq365.Alsouq'; // معرّف الحزمة
+  final String playStoreUrl =
+      'https://play.google.com/store/apps/details?id=$packageName';
 
-  Future<void> _launchURL() async {
-    final String url =
-        'https://play.google.com/store/apps/details?id=com.Alsouq365.Alsouq';
-    final Uri uri = Uri.parse(url);
+  try {
+    // تحقق مما إذا كان التطبيق مثبتًا
+    var app = await InstalledApps.getAppInfo(packageName);
+
+    if (app != null) {
+      // إذا كان التطبيق مثبتًا، افتحه
+      await InstalledApps.startApp(packageName);
+    } else {
+      // إذا لم يكن التطبيق مثبتًا، افتح متجر Google Play
+      final Uri uri = Uri.parse(playStoreUrl);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      } else {
+        throw 'Could not launch $playStoreUrl';
+      }
+    }
+  } catch (e) {
+    // إذا حدث خطأ (التطبيق غير مثبت)
+    final Uri uri = Uri.parse(playStoreUrl);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      throw 'Could not launch $url';
+      throw 'Could not launch $playStoreUrl';
     }
   }
+}
+  // Future<void> _launchURL() async {
+  //   final String url =
+  //       'https://play.google.com/store/apps/details?id=com.Alsouq365.Alsouq';
+  //   final Uri uri = Uri.parse(url);
+  //   if (await canLaunchUrl(uri)) {
+  //     await launchUrl(uri, mode: LaunchMode.externalApplication);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
