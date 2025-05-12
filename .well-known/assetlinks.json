@@ -1,13 +1,12 @@
-[
-    {
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.Alsouq365.Alsouq",
-        "sha256_cert_fingerprints": [
-          "9B:C5:91:E6:38:03:76:92:0E:9A:D6:71:D3:8F:B9:D9:95:5E:67:6E:17:32:D2:2C:2F:3E:A3:0E:61:7F:AB:BD"
-        ]
-      }
-    }
-  ]
-  
+
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.Alsouq365.Alsouq",
+    "sha256_cert_fingerprints": [
+      "9B:C5:91:E6:38:03:76:92:0E:9A:D6:71:D3:8F:B9:D9:95:5E:67:6E:17:32:D2:2C:2F:3E:A3:0E:61:7F:AB:BD"
+    ]
+  }
+}]
+
